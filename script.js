@@ -154,6 +154,15 @@ function updateStages() {
   const cards = [...sTrack.children];
   if (!cards.length) return;
 
+  if (window.innerWidth > 760) {
+    sIndex = 0;
+    sTrack.style.transform = "none";
+    sPrev.disabled = true;
+    sNext.disabled = true;
+    [...sDotsWrap.children].forEach((dot) => dot.classList.remove("active"));
+    return;
+  }
+
   const view = perViewStages();
   const pages = Math.ceil(stages.length / view);
   const maxPage = pages - 1;

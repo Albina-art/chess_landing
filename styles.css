@@ -405,31 +405,61 @@ body {
 }
 
 .stages__slider {
-  margin-top: 2.2rem;
+  margin-top: 3.2rem;
   position: relative;
 }
 
 .stages__viewport {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .stages__track {
-  display: flex;
-  gap: 1rem;
-  transition: transform 0.45s ease;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: minmax(112px, auto);
+  gap: 1.25rem;
 }
 
 .stage-card {
-  flex: 0 0 calc((100% - 2rem) / 3);
-  min-height: 200px;
-  padding: 1.25rem;
-  background: var(--bg) url("https://www.figma.com/api/mcp/asset/3985aab9-9153-4fbc-b25c-cd06d499a3fd") center / cover no-repeat;
-  border-radius: 12px;
+  min-height: 112px;
+  padding: 1.25rem 1.1rem 1rem 1.25rem;
+  background: var(--bg) url("./images/stage-card-background.webp") center / cover no-repeat;
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.2;
   display: flex;
   gap: 1rem;
+}
+
+.stage-card p {
+  margin: 0;
+}
+
+.stage-card:nth-child(3) {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
+.stage-card:nth-child(7) {
+  grid-column: 2 / span 2;
+  position: relative;
+  padding-right: 19rem;
+}
+
+.stage-card:nth-child(7) p {
+  max-width: 20.5em;
+}
+
+.stage-card:nth-child(7)::after {
+  content: "";
+  position: absolute;
+  right: -11rem;
+  bottom: -0.45rem;
+  aspect-ratio: 376/140;
+  width: auto;
+  height: 14.75rem;
+  background: url("./images/airplane.webp") center / contain no-repeat;
+  pointer-events: none;
 }
 
 .stage-card__num {
@@ -481,10 +511,7 @@ body {
 }
 
 .stages .slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
+  display: none;
 }
 
 .stages .prev {
@@ -703,6 +730,7 @@ body {
   }
 
   .stages .slider-btn {
+    display: block;
     position: static;
     transform: none;
   }
@@ -734,6 +762,29 @@ body {
   .stages__viewport {
     order: 1;
     width: 100%;
+    overflow: hidden;
+  }
+
+  .stages__track {
+    display: flex;
+    grid-template-columns: none;
+    grid-auto-rows: auto;
+    gap: 1rem;
+    transition: transform 0.45s ease;
+  }
+
+  .stage-card:nth-child(3),
+  .stage-card:nth-child(7) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .stage-card:nth-child(7) {
+    padding-right: 1.25rem;
+  }
+
+  .stage-card:nth-child(7)::after {
+    content: none;
   }
 
   .stages__dots {
