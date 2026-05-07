@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Клуб четырех коней</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/png" href="./images/favicon.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="hero" id="top">
+    <div class="container hero__content">
+      <a href="#top" class="logo" aria-label="Клуб четырех коней">
+        <span class="logo__mark">
+          <img src="./images/horse.svg" alt="Лошадь" class="logo__horse">
+          <img src="./images/horse.svg" alt="Лошадь" class="logo__horse">
+          <img src="./images/horse.svg" alt="Лошадь" class="logo__horse">
+          <img src="./images/horse.svg" alt="Лошадь" class="logo__horse">
+        </span>
+        <span class="logo__text">Клуб<br />четырех коней</span>
+      </a>
+
+      <h1 class="hero__title reveal">
+        <span class="hero__title-part hero__title-part--first">
+          <span class="hero__title-part-line">ПРЕВРАТИТЕ</span>
+          <span class="hero__title-part-line">УЕЗДНЫЙ ГОРОД</span>
+        </span>
+        <span class="hero__title-part hero__title-part--second">
+          В <span class="hero__title-part-line">СТОЛИЦУ</span>
+        </span>
+        <span class="hero__title-part hero__title-part--third">
+          ЗЕМНОГО ШАРА
+        </span>
+      </h1>
+
+      <p class="hero__subtitle reveal">
+        Оплатите взнос на телеграммы для организации Международного васюкинского
+        турнира по шахматам
+      </p>
+
+      <div class="hero__actions reveal">
+        <a class="btn btn--primary" href="#participants">Поддержать шахматную мысль</a>
+        <a class="btn btn--outline" href="#about">Подробнее<br />о турнире</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker" role="marquee" aria-label="Бегущая строка">
+    <div class="ticker__track">
+      <span>Дело помощи утопающим — дело рук самих утопающих!</span>
+      <span>Шахматы двигают вперёд не только культуру, но и экономику!</span>
+      <span>Лёд тронулся, господа присяжные заседатели!</span>
+    </div>
+    <div class="ticker__track" aria-hidden="true">
+      <span>Дело помощи утопающим — дело рук самих утопающих!</span>
+      <span>Шахматы двигают вперёд не только культуру, но и экономику!</span>
+      <span>Лёд тронулся, господа присяжные заседатели!</span>
+    </div>
+  </div>
+
+  <main>
+    <section class="support container section reveal" id="about">
+      <h2 class="section-title">
+        Чтобы поддержать Международный васюкинский турнир
+        <span>посетите лекцию на тему: «Плодотворная дебютная идея»</span>
+      </h2>
+      <div class="support__image"></div>
+    </section>
+
+    <section class="session container section reveal">
+      <div class="session__image"></div>
+      <div class="session__content">
+        <h2 class="section-title section-title--left">
+          И СЕАНС ОДНОВРЕМЕННОЙ ИГРЫ В ШАХМАТЫ НА 160 ДОСКАХ
+          ГРОССМЕЙСТЕРА О. БЕНДЕРА
+        </h2>
+
+        <dl class="session__table">
+          <div>
+            <dt>Место проведения:</dt>
+            <dd>Клуб «Картонажник»</dd>
+          </div>
+          <div>
+            <dt>Дата и время мероприятия:</dt>
+            <dd>22 июня 1927 г. в 18:00</dd>
+          </div>
+          <div>
+            <dt>Стоимость входных билетов:</dt>
+            <dd>20 коп.</dd>
+          </div>
+          <div>
+            <dt>Плата за игру:</dt>
+            <dd>50 коп.</dd>
+          </div>
+          <div>
+            <dt>Взнос на телеграммы:</dt>
+            <dd><s>100 руб.</s> 21 руб. 16 коп.</dd>
+          </div>
+        </dl>
+
+        <p class="session__contact">
+          По всем вопросам обращаться в администрацию к К. Михельсону
+        </p>
+      </div>
+    </section>
+
+    <section class="stages container section reveal" id="stages">
+      <div class="stages__head">
+        <h2 class="section-title section-title--left">Этапы преображения Васюков</h2>
+        <p>Будущие источники обогащения васюкинцев</p>
+      </div>
+
+      <div class="stages__slider" data-slider="stages">
+        <button class="slider-btn prev" data-action="prev" aria-label="Назад"></button>
+        <div class="stages__viewport">
+          <div class="stages__track"></div>
+        </div>
+        <button class="slider-btn next" data-action="next" aria-label="Вперед"></button>
+      </div>
+      <div class="stages__dots"></div>
+    </section>
+
+    <section class="participants section reveal" id="participants">
+      <div class="container">
+        <div class="participants__head">
+          <h2 class="section-title section-title--left">Участники турнира</h2>
+          <div class="participants__nav">
+            <button class="slider-btn prev" data-action="prev-p" aria-label="Назад"></button>
+            <p class="participants__counter"><span id="currentSlide">1</span> / 6</p>
+            <button class="slider-btn next" data-action="next-p" aria-label="Вперед"></button>
+          </div>
+        </div>
+        <div class="participants__viewport">
+          <div class="participants__track"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="ticker">
+      <div class="ticker__track">
+        <span>Дело помощи утопающим — дело рук самих утопающих!</span>
+        <span>Шахматы двигают вперёд не только культуру, но и экономику!</span>
+        <span>Лёд тронулся, господа присяжные заседатели!</span>
+      </div>
+      <div class="ticker__track" aria-hidden="true">
+        <span>Дело помощи утопающим — дело рук самих утопающих!</span>
+        <span>Шахматы двигают вперёд не только культуру, но и экономику!</span>
+        <span>Лёд тронулся, господа присяжные заседатели!</span>
+      </div>
+    </div>
+    <p class="container footer__text">
+      Все персонажи, события и цитаты являются вымышленными и не принадлежат
+      создателям сайта. С подробностями можно познакомиться в главе XXXIV романа
+      Ильи Ильфа и Евгения Петрова «Двенадцать стульев».
+    </p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
