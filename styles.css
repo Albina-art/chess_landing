@@ -23,6 +23,7 @@ body {
   color: var(--ink);
   background: #fff;
   overflow-x: clip;
+  font-size: 16px;
 }
 
 .container {
@@ -54,7 +55,7 @@ body {
 .hero__title-part {
   display: block;
   font-weight: 400;
-  font-size: 60px;
+  font-size: 3.75rem;
   line-height: 110%;
   text-transform: uppercase;
 }
@@ -64,11 +65,11 @@ body {
 }
 
 .hero__title-part--first .hero__title-part-line:first-child {
-  letter-spacing: 1.5px;
+  letter-spacing: 0.09375rem;
 }
 
 .hero__title-part--first .hero__title-part-line:last-child {
-  letter-spacing: 0.7px;
+  letter-spacing: 0.04375rem;
 }
 
 
@@ -79,12 +80,12 @@ body {
 
 
 .hero__title-part--second .hero__title-part-line {
-  letter-spacing: -0.5px;
+  letter-spacing: -0.03125rem;
 }
 
 .hero__title-part--third {
   text-align: right;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;
 }
 
 .hero__content {
@@ -99,21 +100,21 @@ body {
   align-items: center;
   text-decoration: none;
   color: var(--ink);
-  margin-bottom: 62px;
+  margin-bottom: 3.875rem;
 }
 
 .logo__mark {
-  width: 92px;
-  height: 32px;
+  width: 5.75rem;
+  height: 2rem;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1px;
+  gap: 0.0625rem;
 }
 
 .logo__horse {
-  width: 22px;
-  height: 32px;
+  width: 1.375rem;
+  height: 2rem;
   display: block;
   flex: 0 0 auto;
 }
@@ -121,7 +122,7 @@ body {
 .logo__text {
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 16.6513px;
+  font-size: 1.04070625rem;
   line-height: 108%;
   text-transform: uppercase;
   color: #595653;
@@ -137,14 +138,14 @@ body {
 }
 
 .hero__title {
-  max-width: 542px;
+  max-width: 33.875rem;
 }
 
 .hero__subtitle {
-  margin-top: 24px;
-  margin-bottom: 40px;
-  max-width: 542px;
-  font-size: 18px;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 33.875rem;
+  font-size: 1.125rem;
   line-height: 130%;
   text-align: center;
 }
@@ -154,8 +155,8 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
-  max-width: 263px;
-  padding: 0 49px;
+  max-width: 16.4375rem;
+  padding: 0 3.0625rem;
   width: 100%;
   border-radius: 66px;
   text-align: center;
@@ -188,9 +189,9 @@ body {
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 1rem;
   height: 72px;
-  margin-bottom: 132px;
+  margin-bottom: 8.25rem;
 }
 
 .hero__actions .btn {
@@ -253,6 +254,8 @@ body {
   color: #fff;
   overflow: hidden;
   user-select: none;
+  font-size: 22px;
+  height: 60px;
 }
 
 .ticker__track {
@@ -287,32 +290,53 @@ body {
   text-align: center;
 }
 
-.section-title span {
+.support__title-highlight {
   color: #f54932;
+  font-weight: 700;
+}
+
+.support {
+  display: flex;
+  align-items: center;
+  gap: 4em;
+  margin-top: 5em;
 }
 
 .support__image {
-  height: clamp(220px, 32vw, 394px);
-  margin-top: clamp(1.5rem, 3vw, 2.75rem);
-  border-radius: 12px;
-  background: url("https://www.figma.com/api/mcp/asset/37bb912c-d849-4391-9141-7652cdb29d54") center / cover no-repeat;
+  flex: 1;
+  height: clamp(13.75rem, 20vw, 15.6em);
+  background: url("./images/support.webp") center / contain no-repeat;
+}
+
+.support__title {
+  width: 62%;
+  text-align: left;
+  line-height: 137%;
 }
 
 .session {
-  display: grid;
-  grid-template-columns: minmax(300px, 474px) 1fr;
-  gap: clamp(1.5rem, 4vw, 2.8rem);
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 1.8rem);
   align-items: start;
+  margin-top: 0;
 }
 
 .session__image {
-  min-height: 540px;
-  border-radius: 14px;
-  background: url("https://www.figma.com/api/mcp/asset/2e0638ce-822f-45cd-945d-446dfab159b9") center / cover no-repeat;
+  min-height: 33.75rem;
+  width: 100%;
+  background: url("./images/session.webp") center / contain no-repeat;
+  margin-top: 2em;
+  margin-left: -2em;
 }
 
-.section-title--left {
+.session__content {
+  margin-top: 4em;
+}
+
+.session__title {
   text-align: left;
+  line-height: 130%;
+  max-width: 100rem;
 }
 
 .session__table {
