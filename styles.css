@@ -4,7 +4,7 @@
   --accent: #f54932;
   --dark: #1f1f1f;
   --blue: #3057a2;
-  --card: #ffffff;
+  --border: #d0d0d0;
 }
 
 *,
@@ -21,7 +21,7 @@ body {
   margin: 0;
   font-family: "Golos Text", sans-serif;
   color: var(--ink);
-  background: #fff;
+  background: white;
   overflow-x: clip;
   font-size: 16px;
 }
@@ -37,7 +37,7 @@ body {
 
 .hero {
   min-height: min(700px, 100vh);
-  background: #E9DED4 url("./images/hero-background-desktop.webp") center / cover no-repeat;
+  background: var(--bg) url("./images/hero-background-desktop.webp") center / cover no-repeat;
   position: relative;
   overflow: hidden;
 }
@@ -251,7 +251,7 @@ body {
 .ticker {
   display: flex;
   background: var(--accent);
-  color: #fff;
+  color: white;
   overflow: hidden;
   user-select: none;
   font-size: 22px;
@@ -281,7 +281,7 @@ body {
   height: 6px;
   border-radius: 50%;
   margin-left: 1.25rem;
-  background: #fff;
+  background: white;
   vertical-align: middle;
 }
 
@@ -291,7 +291,7 @@ body {
 }
 
 .support__title-highlight {
-  color: #f54932;
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -327,6 +327,7 @@ body {
   background: url("./images/session.webp") center / contain no-repeat;
   margin-top: 2em;
   margin-left: -2em;
+  margin-right: -1em;
 }
 
 .session__content {
@@ -340,29 +341,35 @@ body {
 }
 
 .session__table {
-  margin: 2rem 0;
-  border-top: 1px solid #d0d0d0;
+  margin: 3rem 0 1.8rem;
+  font-size: 1.25rem;
 }
 
 .session__table div {
   display: grid;
-  grid-template-columns: 43% 57%;
-  border-bottom: 1px solid #d0d0d0;
+  grid-template-columns: 43.5% 56.5%;
+  border-bottom: 2px solid var(--border);
 }
 
 .session__table dt,
 .session__table dd {
   margin: 0;
-  padding: 0.95rem 0;
-  line-height: 1.35;
+  padding: 0.9rem 0;
+  line-height: 130%;
 }
 
 .session__table dt {
-  color: #6d6d6d;
+  color: var(--ink);
+  border-right: 2px solid var(--border);
 }
 
 .session__table dd {
   font-weight: 600;
+  padding-left: 0.8em;
+}
+
+.session__table s {
+  text-decoration-color: var(--accent);
 }
 
 .session__contact {
@@ -371,14 +378,30 @@ body {
   margin: 0;
 }
 
+.stages {
+  margin-top: 12.5em;
+}
+
 .stages__head {
+  position: relative;
   max-width: 820px;
 }
 
-.stages__head p {
+.stages__title {
+  text-align: left;
+  font-size: 3.375rem;
+  line-height: 120%;
+  margin: 0;
+}
+
+.stages__subtitle {
+  position: absolute;
+  left: 301px;
+  bottom: 10px;
   color: var(--blue);
   font-size: 1.25rem;
-  margin: 0.8rem 0 0;
+  margin: 0;
+  max-width: 280px;
 }
 
 .stages__slider {
@@ -400,7 +423,7 @@ body {
   flex: 0 0 calc((100% - 2rem) / 3);
   min-height: 200px;
   padding: 1.25rem;
-  background: #e9ded4 url("https://www.figma.com/api/mcp/asset/3985aab9-9153-4fbc-b25c-cd06d499a3fd") center / cover no-repeat;
+  background: var(--bg) url("https://www.figma.com/api/mcp/asset/3985aab9-9153-4fbc-b25c-cd06d499a3fd") center / cover no-repeat;
   border-radius: 12px;
   font-size: 1.25rem;
   font-weight: 500;
@@ -413,7 +436,7 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #fff;
+  background: white;
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -435,8 +458,8 @@ body {
   content: "";
   width: 10px;
   height: 10px;
-  border-top: 2px solid #fff;
-  border-right: 2px solid #fff;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
   position: absolute;
   inset: 0;
   margin: auto;
@@ -520,7 +543,7 @@ body {
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   margin: 0 auto;
-  background: #e9ded4 url("https://www.figma.com/api/mcp/asset/67c72870-a46e-49a0-ac6d-ad9cfd31ee44") center / cover no-repeat;
+  background: var(--bg) url("https://www.figma.com/api/mcp/asset/67c72870-a46e-49a0-ac6d-ad9cfd31ee44") center / cover no-repeat;
   padding: 1rem;
 }
 
@@ -659,6 +682,18 @@ body {
   .session__contact,
   .stages__head p {
     font-size: 1.125rem;
+  }
+
+  .stages__head {
+    display: block;
+    position: static;
+  }
+
+  .stages__subtitle {
+    position: static;
+    left: auto;
+    bottom: auto;
+    margin-top: 0.75rem;
   }
 
   .stage-card {
