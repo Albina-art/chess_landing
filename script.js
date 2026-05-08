@@ -36,7 +36,9 @@ const stages = [
 ];
 
 const pTrack = document.querySelector(".participants__track");
-const pCounter = document.getElementById("currentSlide");
+const pViewport = document.querySelector(".participants__viewport");
+const pCurrentSpan = document.getElementById("currentSlide");
+const pTotalSpan = document.getElementById("totalSlides");
 const pPrev = document.querySelector("[data-action='prev-p']");
 const pNext = document.querySelector("[data-action='next-p']");
 
@@ -48,6 +50,9 @@ const sNext = document.querySelector(".stages [data-action='next']");
 let pIndex = 0;
 let sIndex = 0;
 let pTimer;
+let pTouchStartX = 0;
+let pTouchStartY = 0;
+let pCloneCount = 0;
 
 function perViewParticipants() {
   return window.innerWidth <= 768 ? 1 : 3;
@@ -57,8 +62,47 @@ function perViewStages() {
   return window.innerWidth <= 768 ? 1 : 3;
 }
 
+function getParticipantsGap() {
+  return parseFloat(getComputedStyle(pTrack).gap) || 20;
+}
+
+function getParticipantsCardWidth() {
+  const cards = [...pTrack.children];
+  if (!cards.length) return 0;
+  const width = cards[0].getBoundingClientRect().width;
+  const gap = getParticipantsGap();
+  return width + gap;
+}
+
+function getTotalSteps() {
+  const totalCards = participants.length;
+  const perView = perViewParticipants();
+  if (perView === 1) return totalCards;
+  return totalCards - perView + 1;
+}
+
+function updateParticipantsCounter() {
+  const totalCards = participants.length;
+  const perView = perViewParticipants();
+  const lastVisible = pIndex + perView;
+  if (perView === 1) {
+    pCurrentSpan.textContent = lastVisible;
+    pTotalSpan.textContent = totalCards;
+  } else {
+    pCurrentSpan.textContent = lastVisible;
+    pTotalSpan.textContent = totalCards;
+  }
+}
+
 function renderParticipants() {
-  pTrack.innerHTML = participants
+  const view = perViewParticipants();
+  const total = participants.length;
+  const totalSteps = getTotalSteps();
+  let normalizedStep = pIndex;
+  if (normalizedStep < 0) normalizedStep = 0;
+  if (normalizedStep >= totalSteps) normalizedStep = totalSteps - 1;
+
+  const cards = participants
     .map(
       (item) => `
         <article class="participant-card">
@@ -70,49 +114,100 @@ function renderParticipants() {
       `
     )
     .join("");
+
+  pCloneCount = Math.min(view, participants.length);
+  const beforeClones = participants
+    .slice(participants.length - pCloneCount)
+    .map(
+      (item) => `
+        <article class="participant-card participant-card--clone" aria-hidden="true">
+          <img class="participant-card__photo" src="./images/participant.webp" alt="${item.name}" loading="lazy" />
+          <h3>${item.name}</h3>
+          <p>${item.role}</p>
+          <a href="#participants" tabindex="-1" aria-hidden="true">Подробнее</a>
+        </article>
+      `
+    )
+    .join("");
+
+  const afterClones = participants
+    .slice(0, pCloneCount)
+    .map(
+      (item) => `
+        <article class="participant-card participant-card--clone" aria-hidden="true">
+          <img class="participant-card__photo" src="./images/participant.webp" alt="${item.name}" loading="lazy" />
+          <h3>${item.name}</h3>
+          <p>${item.role}</p>
+          <a href="#participants" tabindex="-1" aria-hidden="true">Подробнее</a>
+        </article>
+      `
+    )
+    .join("");
+
+  pTrack.innerHTML = `${beforeClones}${cards}${afterClones}`;
+  pIndex = normalizedStep;
   updateParticipants(true);
 }
 
 function updateParticipants(skipTransition = false) {
   const cards = [...pTrack.children];
   if (!cards.length) return;
-  const view = perViewParticipants();
-  const max = Math.max(participants.length - view, 0);
-
-  if (pIndex > max) pIndex = 0;
-  if (skipTransition) pTrack.style.transition = "none";
-  else pTrack.style.transition = "transform 0.45s ease";
-
-  const width = cards[0].getBoundingClientRect().width + 20;
-  pTrack.style.transform = `translateX(${-pIndex * width}px)`;
-
-  const currentPage = Math.min(pIndex + 1, participants.length);
-  pCounter.textContent = String(currentPage);
+  const totalSteps = getTotalSteps();
+  const cloneCount = pCloneCount;
 
   if (skipTransition) {
-    requestAnimationFrame(() => {
-      pTrack.style.transition = "transform 0.45s ease";
-    });
+    pTrack.style.transition = "none";
+  } else {
+    pTrack.style.transition = "transform 0.45s ease";
+  }
+
+  const cardWidth = getParticipantsCardWidth();
+  const offsetIndex = pIndex + cloneCount;
+  pTrack.style.transform = `translateX(${-offsetIndex * cardWidth}px)`;
+
+  updateParticipantsCounter();
+
+  if (skipTransition) {
+    pTrack.getBoundingClientRect();
+    pTrack.style.transition = "transform 0.45s ease";
   }
 }
 
 function nextParticipants() {
-  const view = perViewParticipants();
-  const max = Math.max(participants.length - view, 0);
-  pIndex = pIndex >= max ? 0 : pIndex + 1;
+  const totalSteps = getTotalSteps();
+  pIndex = (pIndex + 1) % totalSteps;
   updateParticipants();
 }
 
 function prevParticipants() {
-  const view = perViewParticipants();
-  const max = Math.max(participants.length - view, 0);
-  pIndex = pIndex <= 0 ? max : pIndex - 1;
+  const totalSteps = getTotalSteps();
+  pIndex = (pIndex - 1 + totalSteps) % totalSteps;
   updateParticipants();
 }
 
 function startParticipantsAutoplay() {
   clearInterval(pTimer);
   pTimer = setInterval(nextParticipants, 4000);
+}
+
+function handleParticipantsTouchStart(event) {
+  const touch = event.changedTouches[0];
+  pTouchStartX = touch.clientX;
+  pTouchStartY = touch.clientY;
+}
+
+function handleParticipantsTouchEnd(event) {
+  const touch = event.changedTouches[0];
+  const deltaX = touch.clientX - pTouchStartX;
+  const deltaY = touch.clientY - pTouchStartY;
+  const swipeThreshold = 40;
+
+  if (Math.abs(deltaX) < swipeThreshold || Math.abs(deltaX) < Math.abs(deltaY)) return;
+
+  if (deltaX < 0) nextParticipants();
+  else prevParticipants();
+
+  startParticipantsAutoplay();
 }
 
 function renderStages() {
@@ -221,6 +316,20 @@ pNext.addEventListener("click", () => {
   nextParticipants();
   startParticipantsAutoplay();
 });
+pViewport.addEventListener("touchstart", handleParticipantsTouchStart, { passive: true });
+pViewport.addEventListener("touchend", handleParticipantsTouchEnd, { passive: true });
+
+pTrack.addEventListener("transitionend", (event) => {
+  if (event.propertyName !== "transform") return;
+  const totalSteps = getTotalSteps();
+  if (pIndex < 0) {
+    pIndex += totalSteps;
+    updateParticipants(true);
+  } else if (pIndex >= totalSteps) {
+    pIndex -= totalSteps;
+    updateParticipants(true);
+  }
+});
 
 sPrev.addEventListener("click", () => {
   sIndex -= 1;
@@ -233,7 +342,7 @@ sNext.addEventListener("click", () => {
 
 window.addEventListener("resize", () => {
   renderStages();
-  updateParticipants(true);
+  renderParticipants();
 });
 
 renderParticipants();
