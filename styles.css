@@ -384,6 +384,10 @@ body {
   border-bottom: 2px solid var(--border);
 }
 
+.session__table div:last-child {
+  border-bottom: none;
+}
+
 .session__table dt,
 .session__table dd {
   margin: 0;
@@ -470,6 +474,10 @@ body {
 .stage-card:nth-child(3) {
   grid-column: 3;
   grid-row: 1 / span 2;
+}
+
+.stage-card:nth-child(4) p {
+  max-width: 70%;
 }
 
 .stage-card:nth-child(7) {
@@ -895,7 +903,7 @@ body {
   .session__table dt,
   .session__table dd {
     padding: 0.3rem 0;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 1.2;
   }
 
@@ -1021,7 +1029,7 @@ body {
   }
 
   .stage-page__item+.stage-page__item {
-    margin-top: 28px;
+    margin-top: 1.75rem;
   }
 
   .stage-page__item p {
@@ -1101,16 +1109,17 @@ body {
 
   .participants__title {
     grid-area: title;
+    font-size: 2.25rem;
   }
 
   .participants__nav {
     grid-area: nav;
-    margin: 40px auto 0;
+    margin: 2.5rem auto 0;
   }
 
   .participants__viewport {
     grid-area: viewport;
-    margin-top: 40px;
+    margin-top: 2.5rem;
   }
 
   .participant-card {
@@ -1118,38 +1127,38 @@ body {
   }
 
   .participant-card__photo {
-    max-height: 244px;
-    width: 244px;
+    max-height: 15.25rem;
+    width: 15.25rem;
   }
 
   .participant-card h3 {
-    margin-top: 28px;
-    margin-bottom: 8px;
-    font-size: 24px;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
     line-height: 1.2;
   }
 
   .participant-card p {
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 1.2;
   }
 
   .participant-card a {
-    margin-top: 20px;
+    margin-top: 1.25rem;
   }
 
   .participants {
-    margin-top: 120px;
-    padding-bottom: 100px;
+    margin-top: 7.5rem;
+    padding-bottom: 6.25rem;
   }
 
   .footer {
-    padding-bottom: 60px;
+    padding-bottom: 3.75rem;
   }
 
   .footer__text {
-    margin-top: 40px;
-    font-size: 16px;
+    margin-top: 2.5rem;
+    font-size: 1rem;
     line-height: 1.35;
   }
 }
