@@ -50,11 +50,11 @@ let sIndex = 0;
 let pTimer;
 
 function perViewParticipants() {
-  return window.innerWidth <= 760 ? 1 : 3;
+  return window.innerWidth <= 768 ? 1 : 3;
 }
 
 function perViewStages() {
-  return window.innerWidth <= 760 ? 1 : 3;
+  return window.innerWidth <= 768 ? 1 : 3;
 }
 
 function renderParticipants() {
@@ -116,22 +116,44 @@ function startParticipantsAutoplay() {
 }
 
 function renderStages() {
-  sTrack.innerHTML = stages
-    .map(
-      (item, i) => `
-        <article class="stage-card">
-          <div class="stage-card__num">${i + 1}</div>
-          <p>${item}</p>
-        </article>
-      `
-    )
-    .join("");
+  if (window.innerWidth <= 768) {
+    const mobileGroups = [[0, 1], [2], [3, 4], [5], [6]];
+    sTrack.innerHTML = mobileGroups
+      .map(
+        (group) => `
+          <article class="stage-page">
+            ${group
+              .map(
+                (index) => `
+                  <div class="stage-page__item">
+                    <div class="stage-card__num">${index + 1}</div>
+                    <p>${stages[index]}</p>
+                  </div>
+                `
+              )
+              .join("")}
+          </article>
+        `
+      )
+      .join("");
+  } else {
+    sTrack.innerHTML = stages
+      .map(
+        (item, i) => `
+          <article class="stage-card">
+            <div class="stage-card__num">${i + 1}</div>
+            <p>${item}</p>
+          </article>
+        `
+      )
+      .join("");
+  }
   buildStageDots();
   updateStages();
 }
 
 function buildStageDots() {
-  const pages = Math.ceil(stages.length / perViewStages());
+  const pages = window.innerWidth <= 768 ? sTrack.children.length : Math.ceil(stages.length / perViewStages());
   sDotsWrap.innerHTML = "";
   for (let i = 0; i < pages; i += 1) {
     const dot = document.createElement("button");
@@ -148,7 +170,7 @@ function updateStages() {
   const cards = [...sTrack.children];
   if (!cards.length) return;
 
-  if (window.innerWidth > 760) {
+  if (window.innerWidth > 768) {
     sIndex = 0;
     sTrack.style.transform = "none";
     sPrev.disabled = true;
@@ -157,14 +179,14 @@ function updateStages() {
     return;
   }
 
-  const view = perViewStages();
-  const pages = Math.ceil(stages.length / view);
+  const pages = cards.length;
   const maxPage = pages - 1;
   if (sIndex < 0) sIndex = 0;
   if (sIndex > maxPage) sIndex = maxPage;
 
-  const cardWidth = cards[0].getBoundingClientRect().width + 16;
-  const shiftBy = sIndex * cardWidth * view;
+  const cardWidth = cards[0].getBoundingClientRect().width;
+  const gap = parseFloat(getComputedStyle(sTrack).columnGap || getComputedStyle(sTrack).gap || "0");
+  const shiftBy = sIndex * (cardWidth + gap);
   sTrack.style.transform = `translateX(${-shiftBy}px)`;
 
   sPrev.disabled = sIndex === 0;
@@ -210,8 +232,7 @@ sNext.addEventListener("click", () => {
 });
 
 window.addEventListener("resize", () => {
-  buildStageDots();
-  updateStages();
+  renderStages();
   updateParticipants(true);
 });
 
