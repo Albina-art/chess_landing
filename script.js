@@ -2,32 +2,26 @@ const participants = [
   {
     name: "Хозе-Рауль Капабланка",
     role: "Чемпион мира по шахматам",
-    image: "https://www.figma.com/api/mcp/asset/04537335-8b9f-44ac-9ed9-dedcb243e6f8"
   },
   {
     name: "Эммануил Ласкер",
     role: "Чемпион мира по шахматам",
-    image: "https://www.figma.com/api/mcp/asset/d390f11d-f20a-4b77-9375-e9bdb928bdb6"
   },
   {
     name: "Александр Алехин",
     role: "Чемпион мира по шахматам",
-    image: "https://www.figma.com/api/mcp/asset/36f0c736-e4a5-45cf-b936-18ece5b52e62"
   },
   {
     name: "Арон Нимцович",
     role: "Чемпион мира по шахматам",
-    image: "https://www.figma.com/api/mcp/asset/a327c349-90cb-48c4-8465-c821789c6e9f"
   },
   {
     name: "Рихард Рети",
     role: "Чемпион мира по шахматам",
-    image: "https://www.figma.com/api/mcp/asset/1989fcea-939e-4a9b-8713-61268d17debe"
   },
   {
     name: "Остап Бендер",
     role: "Гроссмейстер",
-    image: "https://www.figma.com/api/mcp/asset/09ac465b-5637-4d89-9d1d-9ff5d0f57dc5"
   }
 ];
 
@@ -68,9 +62,7 @@ function renderParticipants() {
     .map(
       (item) => `
         <article class="participant-card">
-          <div class="participant-card__photo">
-            <img src="${item.image}" alt="${item.name}" loading="lazy" />
-          </div>
+          <img class="participant-card__photo" src="./images/participant.webp" alt="${item.name}" loading="lazy" />
           <h3>${item.name}</h3>
           <p>${item.role}</p>
           <a href="#participants">Подробнее</a>
@@ -97,9 +89,11 @@ function updateParticipants(skipTransition = false) {
   const currentPage = Math.min(pIndex + 1, participants.length);
   pCounter.textContent = String(currentPage);
 
-  requestAnimationFrame(() => {
-    pTrack.style.transition = "transform 0.45s ease";
-  });
+  if (skipTransition) {
+    requestAnimationFrame(() => {
+      pTrack.style.transition = "transform 0.45s ease";
+    });
+  }
 }
 
 function nextParticipants() {
