@@ -642,14 +642,19 @@ body {
   color: #6d6d6d;
 }
 
-.participant-card a {
-  display: inline-block;
-  margin-top: 1.1rem;
-  padding: 0.6rem 1rem;
-  border: 1px solid var(--blue);
-  border-radius: 999px;
+.participant-card .btn {
+  margin: 1.1rem auto 0;
+  height: 2.1875rem;
+  padding: 0 0.75rem;
+  border-radius: 3.875em;
   color: var(--blue);
-  text-decoration: none;
+  border: 1px solid var(--blue);
+  max-width: max-content;
+}
+
+.participant-card .btn:hover {
+  color: white;
+  background: var(--blue);
 }
 
 .footer {

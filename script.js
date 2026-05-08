@@ -109,7 +109,7 @@ function renderParticipants() {
           <img class="participant-card__photo" src="./images/participant.webp" alt="${item.name}" loading="lazy" />
           <h3>${item.name}</h3>
           <p>${item.role}</p>
-          <a href="#participants">Подробнее</a>
+          <a href="#participants" class="btn">Подробнее</a>
         </article>
       `
     )
@@ -124,7 +124,7 @@ function renderParticipants() {
           <img class="participant-card__photo" src="./images/participant.webp" alt="${item.name}" loading="lazy" />
           <h3>${item.name}</h3>
           <p>${item.role}</p>
-          <a href="#participants" tabindex="-1" aria-hidden="true">Подробнее</a>
+          <a href="#participants" tabindex="-1" aria-hidden="true" class="btn">Подробнее</a>
         </article>
       `
     )
@@ -138,7 +138,7 @@ function renderParticipants() {
           <img class="participant-card__photo" src="./images/participant.webp" alt="${item.name}" loading="lazy" />
           <h3>${item.name}</h3>
           <p>${item.role}</p>
-          <a href="#participants" tabindex="-1" aria-hidden="true">Подробнее</a>
+          <a href="#participants" tabindex="-1" aria-hidden="true" class="btn">Подробнее</a>
         </article>
       `
     )
