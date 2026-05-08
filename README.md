@@ -1,6 +1,7 @@
 # Club Landing
 
-Простой лендинг с версткой на HTML/CSS/JS.
+Простой лендинг с версткой на HTML/CSS/JS, задеплоен на Vercel. 
+[https://chess-landing-one.vercel.app/](https://chess-landing-one.vercel.app/)
 
 ## Структура
 

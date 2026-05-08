@@ -321,12 +321,11 @@ body {
 
 .support {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 764fr) minmax(0, 394fr);
   grid-template-areas:
-    "title image"
-    "lecture image";
+    "text image";
   align-items: center;
-  gap: 4em;
+  column-gap: 4em;
   margin-top: 5em;
 }
 
@@ -337,14 +336,14 @@ body {
 }
 
 .support__title {
-  grid-area: title;
+  display: inline;
   width: 100%;
   line-height: 137%;
 }
 
 .support__lecture {
-  grid-area: lecture;
-  margin: 0;
+  display: inline;
+  margin: 0 0 0 0.35ch;
   line-height: 137%;
 }
 
@@ -371,6 +370,7 @@ body {
 .session__title {
   line-height: 130%;
   max-width: 100rem;
+  margin-right: 1em;
 }
 
 .session__table {
@@ -695,11 +695,6 @@ body {
     min-height: 380px;
   }
 
-  .btn {
-    padding: 0 0.5rem;
-    height: 47px;
-  }
-
   .btn br {
     display: none;
   }
@@ -719,6 +714,11 @@ body {
     --ticker-gap: 1rem;
   }
 
+  .btn {
+    padding: 0 0.5rem;
+    height: 47px;
+  }
+
   .hero {
     background-image: url("./images/hero-background-mobile.webp");
     min-height: 812px;
@@ -729,7 +729,7 @@ body {
   }
 
   .container {
-    width: min(100% - 40px, 335px);
+    width: calc(100% - 40px);
   }
 
   .hero__title {
@@ -773,12 +773,13 @@ body {
   }
 
   .hero__actions .btn {
-    min-width: 100%;
+    min-width: 80%;
     max-width: 100%;
     min-height: 47px;
     padding: 0 20px;
     font-size: 18px;
     font-weight: 500;
+    max-width: 40rem;
   }
 
   .hero__actions .btn br {
@@ -849,14 +850,16 @@ body {
       "title"
       "image"
       "lecture";
-    gap: 1.5rem;
+    row-gap: 1.5rem;
   }
 
-  .support__lecture {
-    margin-top: 0.0275rem;
+  .support__text {
+    display: contents;
   }
 
   .support__title {
+    grid-area: title;
+    display: block;
     width: 100%;
   }
 
@@ -866,6 +869,8 @@ body {
   }
 
   .support__lecture {
+    grid-area: lecture;
+    display: block;
     margin: 0;
   }
 
@@ -1168,12 +1173,21 @@ body {
     margin-left: 0;
   }
 
+  .hero__actions .btn {
+    min-width: 100%;
+  }
+
   .hero__sun {
     right: max(-4px, calc(50% - 148px));
   }
 
   .hero__city {
     right: -410px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 335px;
   }
 }
 
