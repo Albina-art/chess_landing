@@ -59,7 +59,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% + 2.375em);
+  height: 100%;
   background: url("./images/hero-mask-desktop.webp") center / cover no-repeat;
 }
 
@@ -821,6 +821,11 @@ body {
 
   .hero__board {
     height: 74px;
+  }
+
+
+  .hero::before {
+    height: calc(100% + 2.375em);
   }
 
   .ticker {
